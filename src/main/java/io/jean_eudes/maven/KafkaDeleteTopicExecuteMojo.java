@@ -9,10 +9,10 @@ import org.apache.maven.plugins.annotations.Parameter;
 import kafka.admin.AdminUtils;
 import kafka.utils.ZkUtils;
 
-@Mojo(name = "removeTopic",
+@Mojo(name = "deleteTopic",
       defaultPhase = POST_INTEGRATION_TEST,
       threadSafe = true)
-public class KafkaRemoveTopicExecuteMojo extends AbstractMojo {
+public class KafkaDeleteTopicExecuteMojo extends AbstractMojo {
 
     @Parameter(property = "kafka.topic", defaultValue = "myTopic")
     private String topic;
@@ -24,10 +24,15 @@ public class KafkaRemoveTopicExecuteMojo extends AbstractMojo {
     private int zookeeperPort;
 
     public void execute() throws MojoExecutionException, MojoFailureException {
-
-        getLog().info("removing topic: " + topic);
-
         ZkUtils zkUtils = ZkUtils.apply(String.format("%s:%d", zookeeperHost, zookeeperPort), 10000, 10000, false);
+
+        if (!AdminUtils.topicExists(zkUtils, topic)) {
+            getLog().info("Topic " + topic + " doesn't exist, skipping deletion");
+            return;
+        }
+
+        getLog().info("Deleting topic: " + topic);
+
         AdminUtils.deleteTopic(zkUtils, topic);
     }
 
