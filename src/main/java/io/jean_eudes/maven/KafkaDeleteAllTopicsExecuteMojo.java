@@ -40,7 +40,7 @@ public class KafkaDeleteAllTopicsExecuteMojo extends AbstractMojo {
             while (AdminUtils.topicExists(zkUtils, topic) && (System.currentTimeMillis() - start) < timeout) {
 
                 try {
-                    TimeUnit.SECONDS.sleep(100);
+                    TimeUnit.MILLISECONDS.sleep(100);
                 } catch (InterruptedException e) {
                     getLog().warn(e);
                 }
