@@ -1,6 +1,7 @@
 package io.jean_eudes.maven;
 
 import static org.apache.maven.plugins.annotations.LifecyclePhase.POST_INTEGRATION_TEST;
+import java.util.concurrent.TimeUnit;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -27,13 +28,29 @@ public class KafkaDeleteTopicExecuteMojo extends AbstractMojo {
         ZkUtils zkUtils = ZkUtils.apply(String.format("%s:%d", zookeeperHost, zookeeperPort), 10000, 10000, false);
 
         if (!AdminUtils.topicExists(zkUtils, topic)) {
-            getLog().info("Topic " + topic + " doesn't exist, skipping deletion");
+            getLog().info(String.format("Topic '%s' doesn't exist, skipping deletion", topic));
             return;
         }
 
-        getLog().info("Deleting topic: " + topic);
+        getLog().info(String.format("Deleting topic: '%s'", topic));
 
         AdminUtils.deleteTopic(zkUtils, topic);
+
+        long start = System.currentTimeMillis();
+        long timeout = 10000;
+
+        while (AdminUtils.topicExists(zkUtils, topic) && (System.currentTimeMillis() - start) < timeout) {
+
+            try {
+                TimeUnit.SECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                getLog().warn(e);
+            }
+        }
+
+        if ((System.currentTimeMillis() - start) > timeout) {
+            getLog().warn(String.format("Topic '%s' deletion failed", topic));
+        }
     }
 
 }
