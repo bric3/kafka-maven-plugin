@@ -24,6 +24,8 @@ public class KafkaDeleteAllTopicsExecuteMojo extends AbstractMojo {
     @Parameter(property = "zookeeper.port", defaultValue = "2181")
     private int zookeeperPort;
 
+    public final static String IGNORED_TOPIC = "__consumer_offsets";
+
     public void execute() throws MojoExecutionException, MojoFailureException {
         ZkUtils zkUtils = ZkUtils.apply(String.format("%s:%d", zookeeperHost, zookeeperPort), 10000, 10000, false);
 
@@ -32,6 +34,9 @@ public class KafkaDeleteAllTopicsExecuteMojo extends AbstractMojo {
         while (stringPropertiesMap.hasNext()) {
             String topic = stringPropertiesMap.next();
 
+            if (topic.equals(IGNORED_TOPIC)) {
+                continue;
+            }
             AdminUtils.deleteTopic(zkUtils, topic);
 
             long start = System.currentTimeMillis();
