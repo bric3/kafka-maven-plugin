@@ -5,7 +5,7 @@
 
     <groupId>com.github.bric3.maven</groupId>
     <artifactId>kafka-maven-plugin</artifactId>
-    <version>0.5</version>
+    <version>0.6</version>
     <packaging>maven-plugin</packaging>
 
     <name>Simple Kafka Maven Plugin</name>
