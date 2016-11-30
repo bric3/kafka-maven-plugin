@@ -1,12 +1,17 @@
 ## Simple kafka topic management maven plugin
 
-Sample configuration
+This project is a fork of [Jean-Eudes/kafka-maven-plugin](https://github.com/Jean-Eudes/kafka-maven-plugin), however 
+this fork is maintained separately as I'd like to deploy it on central, hence new packages and most probably other changes. 
+
+
+
+Sample configuration:
 
 ```xml
 <plugin>
-    <groupId>io.jean_eudes.maven</groupId>
+    <groupId>com.github.bric3.maven</groupId>
     <artifactId>kafka-maven-plugin</artifactId>
-    <version>0.5</version>
+    <version>0.6</version>
     <executions>
         <execution>
             <id>remove-all-topics_before_build</id>

@@ -3,7 +3,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.jean_eudes.maven</groupId>
+    <groupId>com.github.bric3.maven</groupId>
     <artifactId>kafka-maven-plugin</artifactId>
     <version>0.5</version>
     <packaging>maven-plugin</packaging>
@@ -11,6 +11,14 @@
     <name>Simple Kafka Maven Plugin</name>
     <description>Simple Mojo that enable to execute Topic creation on kafka</description>
     <inceptionYear>2015</inceptionYear>
+    <url>https://github.com/bric3/kafka-maven-plugin</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <developers>
         <developer>
@@ -20,12 +28,19 @@
                 <role>Java Developer</role>
             </roles>
         </developer>
+        <developer>
+            <id>brice.dutheil@gmail.com</id>
+            <name>Brice Dutheil</name>
+            <roles>
+                <role>Java Developer</role>
+            </roles>
+        </developer>
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:Jean-Eudes/kafka-maven-plugin.git</connection>
-        <url>scm:git:git@github.com:Jean-Eudes/kafka-maven-plugin.git</url>
-        <developerConnection>scm:git:git@github.com:Jean-Eudes/kafka-maven-plugin.git</developerConnection>
+        <connection>scm:git:git@github.com:bric3/kafka-maven-plugin.git</connection>
+        <url>scm:git:git@github.com:bric3/kafka-maven-plugin.git</url>
+        <developerConnection>scm:git:git@github.com:bric3/kafka-maven-plugin.git</developerConnection>
     </scm>
 
     <prerequisites>

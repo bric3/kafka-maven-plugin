@@ -1,4 +1,4 @@
-package io.jean_eudes.maven;
+package com.github.bric3.maven;
 
 import java.util.Properties;
 import kafka.admin.AdminUtils;

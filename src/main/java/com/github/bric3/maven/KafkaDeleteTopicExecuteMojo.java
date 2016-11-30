@@ -1,4 +1,4 @@
-package io.jean_eudes.maven;
+package com.github.bric3.maven;
 
 import java.util.concurrent.TimeUnit;
 import kafka.admin.AdminUtils;
