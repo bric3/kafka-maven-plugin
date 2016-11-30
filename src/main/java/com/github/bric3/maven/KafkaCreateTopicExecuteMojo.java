@@ -25,10 +25,10 @@ public class KafkaCreateTopicExecuteMojo extends AbstractMojo {
     @Parameter(property = "zookeeper.port", defaultValue = "2181")
     private int zookeeperPort;
 
-    @Parameter(property = "partition", defaultValue = "1")
+    @Parameter(property = "kafka.topic.partition", defaultValue = "1")
     private int partition;
 
-    @Parameter(property = "replicationFactor", defaultValue = "1")
+    @Parameter(property = "kafka.topic.replicationFactor", defaultValue = "1")
     private int replicationFactor;
 
     @Parameter(property = "kafka.skip", defaultValue = "false")
